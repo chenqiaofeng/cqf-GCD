@@ -25,9 +25,23 @@
     // Use this method to pause ongoing tasks, disable timers, and throttle down OpenGL ES frame rates. Games should use this method to pause the game.
 }
 
+//运行了20 分钟还没停
+
 - (void)applicationDidEnterBackground:(UIApplication *)application {
     // Use this method to release shared resources, save user data, invalidate timers, and store enough application state information to restore your application to its current state in case it is terminated later.
     // If your application supports background execution, this method is called instead of applicationWillTerminate: when the user quits.
+    
+//    [NSTimer scheduledTimerWithTimeInterval:1 target:self selector:@selector(timeAction:) userInfo:nil repeats:YES];
+    
+    
+//    [self beingBackgroundUpdateTask];
+//    // 在这里加上你需要长久运行的代码
+//       [NSTimer scheduledTimerWithTimeInterval:1 target:self selector:@selector(timeAction:) userInfo:nil repeats:YES];
+//    [self endBackgroundUpdateTask];
+}
+-(void) timeAction:(NSTimer *) time
+{
+    NSLog(@"Timer Test:%@",time);
 }
 
 - (void)applicationWillEnterForeground:(UIApplication *)application {
@@ -40,6 +54,20 @@
 
 - (void)applicationWillTerminate:(UIApplication *)application {
     // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
+}
+
+
+- (void)beingBackgroundUpdateTask
+{
+    self.backgroundUpdateTask = [[UIApplication sharedApplication] beginBackgroundTaskWithExpirationHandler:^{
+        [self endBackgroundUpdateTask];
+    }];
+}
+
+- (void)endBackgroundUpdateTask
+{
+    [[UIApplication sharedApplication] endBackgroundTask: self.backgroundUpdateTask];
+    self.backgroundUpdateTask = UIBackgroundTaskInvalid;
 }
 
 @end
