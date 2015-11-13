@@ -14,5 +14,8 @@
 
 @property (assign, nonatomic) UIBackgroundTaskIdentifier backgroundUpdateTask;
 
+
+@property (strong,nonatomic) NSString *cqfStr;
+
 @end
 
