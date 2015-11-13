@@ -19,6 +19,10 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     // Override point for customization after application launch.
+    
+    self.cqfStr = @"cqf branch test!";
+    NSLog(@"%@",self.cqfStr);
+    
     return YES;
 }
 
